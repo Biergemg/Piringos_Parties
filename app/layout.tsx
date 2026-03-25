@@ -6,20 +6,35 @@ import { BUSINESS_DATA } from '@/data/content';
 const nunito = Nunito({ subsets: ['latin'], variable: '--font-nunito' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://piringosparties.com"),
-  title: "Piringos Parties | Cajas de comida infantil en Tampico, Ciudad Madero y Altamira",
-  description: "Cajas de comida infantil personalizadas para fiestas y eventos en Tampico, Madero y Altamira. Pedido fácil por WhatsApp. 5 paquetes desde $68.",
-  alternates: { canonical: "https://piringosparties.com" },
+  metadataBase: new URL("https://piringos-parties.vercel.app"),
+  title: "Piringos Parties | Delega el estrés de la comida infantil",
+  description: "Cajas premium, 100% caseras y entregadas con puntualidad perfecta en Tampico, Madero y Altamira. Cada niño recibe su caja espectacular lista para disfrutar.",
+  alternates: { canonical: "https://piringos-parties.vercel.app" },
   openGraph: {
-    title: "Piringos Parties | Cajas de comida infantil",
-    description: "Cajas de comida infantil personalizadas para fiestas y eventos en Tampico, Madero y Altamira. Pedido fácil por WhatsApp.",
-    url: "https://piringosparties.com",
+    title: "Piringos Parties | Delega el estrés de la comida infantil",
+    description: "Cajas premium, 100% caseras y entregadas con puntualidad perfecta. Tú disfrutas la fiesta, cada niño recibe su caja espectacular.",
+    url: "https://piringos-parties.vercel.app",
     siteName: "Piringos Parties",
-    images: [{ url: "/hero-box.jpeg", width: 1200, height: 630 }],
+    images: [{ 
+      url: "/hero-box.jpeg", 
+      width: 1200, 
+      height: 630,
+      alt: "Piringos Parties Box Lunch Premium"
+    }],
     locale: "es_MX",
     type: "website"
   },
-  icons: { icon: "/favicon.ico" }
+  twitter: {
+    card: "summary_large_image",
+    title: "Piringos Parties | Delega el estrés de la comida",
+    description: "Cajas infantiles premium, 100% caseras y entregadas con puntualidad perfecta en Tampico, Madero y Altamira.",
+    images: ["/hero-box.jpeg"]
+  },
+  icons: { 
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
