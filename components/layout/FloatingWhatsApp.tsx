@@ -4,7 +4,7 @@ export function FloatingWhatsApp() {
   return (
     <a 
       href={BUSINESS_DATA.whatsappUrl} 
-      className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg z-50 hover:scale-110 transition-transform flex items-center justify-center w-16 h-16"
+      className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-brand-cta p-4 text-brand-text shadow-xl shadow-brand-cta/30 transition-all animate-[pulse_4s_ease-in-out_infinite] hover:scale-105 hover:animate-none hover:shadow-brand-cta/50"
       aria-label="Contactar por WhatsApp"
     >
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-10 h-10">

@@ -1,62 +1,68 @@
-import { PACKAGES, BUSINESS_DATA } from '@/data/content';
+import { BUSINESS_DATA, PACKAGES } from '@/data/content';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export function Packages() {
   return (
-    <section className="w-full bg-brand-bg py-32 px-6 relative overflow-hidden">
-      {/* Background glowing effects */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-pink/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-cta/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <section className="relative w-full overflow-hidden bg-brand-bg px-6 py-32">
+      <div className="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-brand-pink/10 blur-[120px]"></div>
+      <div className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-brand-cta/10 blur-[120px]"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-20">
-          <span className="inline-block py-1 px-4 rounded-full bg-brand-surface text-brand-text text-sm font-bold uppercase tracking-widest mb-4 shadow-sm border border-brand-text/10">
-            Opciones para tu evento
-          </span>
-          <h2 className="text-brand-text mb-4 text-4xl md:text-5xl font-extrabold tracking-tight">Elige tu paquete</h2>
-          <p className="text-brand-text/70 mb-16 text-lg max-w-2xl mx-auto">
-            Todos los paquetes incluyen sticker personalizado y presentación individual Premium. Calidad garantizada en cada caja.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <SectionHeading
+          eyebrow="Opciones para tu evento"
+          title="Elige tu paquete"
+          description="Todos los paquetes incluyen sticker personalizado y presentación individual Premium. Calidad garantizada en cada caja."
+          className="mb-20"
+          eyebrowClassName="mb-4 bg-brand-surface text-brand-text border border-brand-text/10"
+          titleClassName="mb-4 text-4xl md:text-5xl"
+          descriptionClassName="mx-auto mb-16 max-w-2xl text-lg"
+        />
+
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-3">
           {PACKAGES.map((pkg, idx) => {
-            const isPopular = idx === 1; // Highlight the middle package
+            const isPopular = Boolean(pkg.featured);
 
             return (
-              <div 
-                key={pkg.id} 
-                className={`relative rounded-[2.5rem] p-8 md:p-10 flex flex-col h-full transition-all duration-500 animate-fade-in-up shadow-xl ${
-                  isPopular 
-                    ? 'bg-brand-text text-brand-bg scale-100 md:scale-105 border-none shadow-brand-text/40 z-10' 
-                    : 'bg-white text-brand-text border border-brand-text/5 hover:-translate-y-2'
+              <div
+                key={pkg.id}
+                className={`relative flex h-full flex-col rounded-[2.5rem] p-8 shadow-xl transition-all duration-500 animate-fade-in-up md:p-10 ${
+                  isPopular
+                    ? 'z-10 scale-100 border-none bg-brand-text text-brand-bg shadow-brand-text/40 md:scale-105'
+                    : 'border border-brand-text/5 bg-white text-brand-text hover:-translate-y-2'
                 }`}
                 style={{ animationDelay: `${(idx % 3 + 1) * 150}ms` }}
               >
-                {/* Most Popular Badge */}
-                {isPopular && (
-                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-brand-pink text-white px-6 py-1.5 rounded-full text-sm font-bold shadow-lg border-2 border-brand-bg transform rotate-1">
-                    Más Popular
+                {isPopular && pkg.badge ? (
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 rotate-1 rounded-full border-2 border-brand-bg bg-brand-pink px-6 py-1.5 text-sm font-bold text-white shadow-lg">
+                    {pkg.badge}
                   </div>
-                )}
+                ) : null}
 
                 <div className="mb-8">
-                  <h3 className={`m-0 text-2xl font-extrabold mb-2 tracking-tight ${isPopular ? 'text-white' : 'text-brand-text'}`}>
+                  <h3 className={`m-0 mb-2 text-2xl font-extrabold tracking-tight ${isPopular ? 'text-white' : 'text-brand-text'}`}>
                     {pkg.name}
                   </h3>
                   <div className="flex items-baseline gap-2">
                     <span className={`text-5xl font-black ${isPopular ? 'text-brand-cta' : 'text-brand-text'}`}>
                       {pkg.price}
                     </span>
-                    <span className={`font-bold ${isPopular ? 'text-white/60' : 'text-brand-text/50'}`}>/caja</span>
+                    <span className={`font-bold ${isPopular ? 'text-white/60' : 'text-brand-text/50'}`}>
+                      /caja
+                    </span>
                   </div>
                 </div>
 
                 <ul className="mb-10 flex-grow space-y-5">
-                  {pkg.items.map((item, i) => (
-                    <li key={i} className={`flex items-start text-base leading-snug font-medium ${isPopular ? 'text-white/90' : 'text-brand-text/80'}`}>
-                      <span className={`mt-0.5 mr-4 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                        isPopular ? 'bg-brand-cta/20 text-brand-cta' : 'bg-brand-green/20 text-brand-green'
-                      }`}>
+                  {pkg.items.map((item) => (
+                    <li
+                      key={item}
+                      className={`flex items-start text-base leading-snug font-medium ${isPopular ? 'text-white/90' : 'text-brand-text/80'}`}
+                    >
+                      <span
+                        className={`mt-0.5 mr-4 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                          isPopular ? 'bg-brand-cta/20 text-brand-cta' : 'bg-brand-green/20 text-brand-green'
+                        }`}
+                      >
                         ✓
                       </span>
                       {item}
@@ -64,15 +70,15 @@ export function Packages() {
                   ))}
                 </ul>
 
-                <a 
+                <a
                   href={BUSINESS_DATA.whatsappUrl}
-                  className={`w-full block text-center py-4 rounded-full font-bold transition-all duration-300 shadow-md ${
-                    isPopular 
-                      ? 'bg-brand-cta text-brand-text hover:bg-white hover:text-brand-text hover:shadow-brand-cta/40 hover:-translate-y-1' 
-                      : 'bg-brand-surface text-brand-text hover:bg-brand-cta hover:text-brand-text border border-brand-text/10 hover:border-transparent hover:shadow-brand-cta/30 hover:-translate-y-1'
+                  className={`block w-full rounded-full py-4 text-center font-bold shadow-md transition-all duration-300 ${
+                    isPopular
+                      ? 'bg-brand-cta text-brand-text hover:-translate-y-1 hover:bg-white hover:text-brand-text hover:shadow-brand-cta/40'
+                      : 'border border-brand-text/10 bg-brand-surface text-brand-text hover:-translate-y-1 hover:border-transparent hover:bg-brand-cta hover:text-brand-text hover:shadow-brand-cta/30'
                   }`}
-                 >
-                   Pedir este paquete
+                >
+                  Pedir este paquete
                 </a>
               </div>
             );
