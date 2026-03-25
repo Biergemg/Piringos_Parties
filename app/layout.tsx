@@ -15,25 +15,13 @@ export const metadata: Metadata = {
     description: "Cajas premium, 100% caseras y entregadas con puntualidad perfecta. Tú disfrutas la fiesta, cada niño recibe su caja espectacular.",
     url: "https://piringos-parties.vercel.app",
     siteName: "Piringos Parties",
-    images: [{ 
-      url: "/hero-box.jpeg", 
-      width: 1200, 
-      height: 630,
-      alt: "Piringos Parties Box Lunch Premium"
-    }],
     locale: "es_MX",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
     title: "Piringos Parties | Delega el estrés de la comida",
-    description: "Cajas infantiles premium, 100% caseras y entregadas con puntualidad perfecta en Tampico, Madero y Altamira.",
-    images: ["/hero-box.jpeg"]
-  },
-  icons: { 
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png"
+    description: "Cajas infantiles premium, 100% caseras y entregadas con puntualidad perfecta en Tampico, Madero y Altamira."
   }
 };
 
